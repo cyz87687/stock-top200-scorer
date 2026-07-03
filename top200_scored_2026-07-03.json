@@ -1386,110 +1386,6 @@
       "cagr3": 75.6
     },
     {
-      "name": "兆易创新",
-      "code": "sh603986",
-      "sector": "AI/半导体",
-      "price": 677.77,
-      "pct_chg": -2.45,
-      "pe": 165.46,
-      "turnover": 42673730269.0,
-      "score_news": 4,
-      "score_tech": 3.5,
-      "score_fund": 3,
-      "score_theme": 5,
-      "total": 15.6,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
-      "tech": {
-        "ma5": 759.9,
-        "ma10": 738.1,
-        "ma20": 627.7,
-        "ma60": 452.5,
-        "wma5": 609.2,
-        "wma10": 500.1,
-        "wma20": 390.8,
-        "trend": "双线多头",
-        "bull_level": 3,
-        "position": 74.0,
-        "vol_ratio": 1.06,
-        "amount_ratio": 1.26,
-        "amount_today_yi": 422.6,
-        "boll_upper": 875.06,
-        "boll_mid": 627.74,
-        "boll_lower": 380.41,
-        "boll_pos": 60.1,
-        "boll_label": "中轨上方",
-        "reason": "双线多头+相对高位(74%)+BOLL通道内; BOLL:中轨上方(60%)",
-        "overall": "强势",
-        "explanations": [
-          "日线和周线均线均多头排列，中长趋势向上",
-          "BOLL中轨上方运行，多头占优"
-        ],
-        "support_levels": [
-          [
-            "MA20均线",
-            627.74
-          ],
-          [
-            "MA60均线",
-            452.52
-          ],
-          [
-            "BOLL下轨",
-            380.41
-          ]
-        ],
-        "resistance_levels": [
-          [
-            "120日高点",
-            840.0
-          ],
-          [
-            "BOLL上轨",
-            875.06
-          ]
-        ],
-        "vol_price_analysis": "量价基本平衡",
-        "industry_prospect": "行业前景加分+0.5(优质赛道+一线标的)"
-      },
-      "fund_reasons": [
-        "高估值(FwdPE=97.5)但有增长(+80%)",
-        "估值阶梯明显收缩(97.5→78.8→59.1),3年收缩39%,高PE起始,阶梯加分受限",
-        "PEG=1.22(合理估值)"
-      ],
-      "theme_reasons": [
-        "细分题材:存储芯片",
-        "板块涨跌-0.2%",
-        "板块2只涨停",
-        "题材处于震荡期",
-        "板块高度集中(77只上榜)"
-      ],
-      "news_reasons": [
-        "存储芯片龙头+NOR Flash全球前三+MCU国产替代加速",
-        "⚠️存储芯片价格周期波动",
-        "小跌-2.5%"
-      ],
-      "news_items": [
-        {
-          "source": "券商研报",
-          "time": "",
-          "sentiment": "一般利好",
-          "content": "存储芯片龙头+NOR Flash全球前三+MCU国产替代加速",
-          "url": ""
-        }
-      ],
-      "sub_theme": "存储芯片",
-      "lifecycle": "震荡期",
-      "fwd_pe": 97.5,
-      "growth": 80,
-      "pe_ladder": {
-        "2026": 97.5,
-        "2027": 78.8,
-        "2028": 59.1
-      },
-      "cagr3": null
-    },
-    {
       "name": "胜宏科技",
       "code": "sz300476",
       "sector": "AI/半导体",
@@ -1804,6 +1700,110 @@
         "2028": 47.3
       },
       "cagr3": 46.8
+    },
+    {
+      "name": "兆易创新",
+      "code": "sh603986",
+      "sector": "AI/半导体",
+      "price": 677.77,
+      "pct_chg": -2.45,
+      "pe": 165.46,
+      "turnover": 42673730269.0,
+      "score_news": 4,
+      "score_tech": 3.5,
+      "score_fund": 2.5,
+      "score_theme": 5,
+      "total": 15.0,
+      "rating": "A",
+      "advice": "逢低加仓，重点关注",
+      "tech": {
+        "ma5": 759.9,
+        "ma10": 738.1,
+        "ma20": 627.7,
+        "ma60": 452.5,
+        "wma5": 609.2,
+        "wma10": 500.1,
+        "wma20": 390.8,
+        "trend": "双线多头",
+        "bull_level": 3,
+        "position": 74.0,
+        "vol_ratio": 1.06,
+        "amount_ratio": 1.26,
+        "amount_today_yi": 422.6,
+        "boll_upper": 875.06,
+        "boll_mid": 627.74,
+        "boll_lower": 380.41,
+        "boll_pos": 60.1,
+        "boll_label": "中轨上方",
+        "reason": "双线多头+相对高位(74%)+BOLL通道内; BOLL:中轨上方(60%)",
+        "overall": "强势",
+        "explanations": [
+          "日线和周线均线均多头排列，中长趋势向上",
+          "BOLL中轨上方运行，多头占优"
+        ],
+        "support_levels": [
+          [
+            "MA20均线",
+            627.74
+          ],
+          [
+            "MA60均线",
+            452.52
+          ],
+          [
+            "BOLL下轨",
+            380.41
+          ]
+        ],
+        "resistance_levels": [
+          [
+            "120日高点",
+            840.0
+          ],
+          [
+            "BOLL上轨",
+            875.06
+          ]
+        ],
+        "vol_price_analysis": "量价基本平衡",
+        "industry_prospect": "行业前景加分+0.5(优质赛道+一线标的)"
+      },
+      "fund_reasons": [
+        "高估值(FwdPE=97.5)但有增长(+43%)",
+        "估值阶梯明显收缩(97.5→78.8→59.1),3年收缩39%,高PE起始,阶梯加分受限",
+        "PEG=2.29(偏高估值)"
+      ],
+      "theme_reasons": [
+        "细分题材:存储芯片",
+        "板块涨跌-0.2%",
+        "板块2只涨停",
+        "题材处于震荡期",
+        "板块高度集中(77只上榜)"
+      ],
+      "news_reasons": [
+        "存储芯片龙头+NOR Flash全球前三+MCU国产替代加速",
+        "⚠️存储芯片价格周期波动",
+        "小跌-2.5%"
+      ],
+      "news_items": [
+        {
+          "source": "券商研报",
+          "time": "",
+          "sentiment": "一般利好",
+          "content": "存储芯片龙头+NOR Flash全球前三+MCU国产替代加速",
+          "url": ""
+        }
+      ],
+      "sub_theme": "存储芯片",
+      "lifecycle": "震荡期",
+      "fwd_pe": 97.5,
+      "growth": 42.6,
+      "pe_ladder": {
+        "2026": 97.5,
+        "2027": 78.8,
+        "2028": 59.1
+      },
+      "cagr3": -8.4
     },
     {
       "name": "江波龙",
@@ -3472,8 +3472,8 @@
       "score_fund": 2.5,
       "score_theme": 5,
       "total": 13.9,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 1734.0,
         "ma10": 1785.2,
@@ -3576,8 +3576,8 @@
       "score_fund": 3,
       "score_theme": 4.5,
       "total": 13.8,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 100.5,
         "ma10": 109.1,
@@ -3679,8 +3679,8 @@
       "score_fund": 2,
       "score_theme": 4.5,
       "total": 13.8,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 55.3,
         "ma10": 58.9,
@@ -3783,8 +3783,8 @@
       "score_fund": 4,
       "score_theme": 3.5,
       "total": 13.8,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 285.0,
         "ma10": 289.3,
@@ -3886,8 +3886,8 @@
       "score_fund": 4.5,
       "score_theme": 3.0,
       "total": 13.8,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 87.3,
         "ma10": 87.3,
@@ -3987,8 +3987,8 @@
       "score_fund": 1,
       "score_theme": 5,
       "total": 13.6,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 149.7,
         "ma10": 149.3,
@@ -4091,8 +4091,8 @@
       "score_fund": 5,
       "score_theme": 3.0,
       "total": 13.6,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 5.8,
         "ma10": 5.4,
@@ -4193,8 +4193,8 @@
       "score_fund": 5,
       "score_theme": 3.0,
       "total": 13.6,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 23.7,
         "ma10": 23.1,
@@ -4295,8 +4295,8 @@
       "score_fund": 5,
       "score_theme": 3.0,
       "total": 13.6,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 30.0,
         "ma10": 30.0,
@@ -4402,8 +4402,8 @@
       "score_fund": 5,
       "score_theme": 2.0,
       "total": 13.6,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 6.3,
         "ma10": 6.7,
@@ -4508,8 +4508,8 @@
       "score_fund": 3,
       "score_theme": 4.5,
       "total": 13.5,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 318.6,
         "ma10": 323.1,
@@ -4611,8 +4611,8 @@
       "score_fund": 2,
       "score_theme": 4.5,
       "total": 13.4,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 242.5,
         "ma10": 253.1,
@@ -4715,8 +4715,8 @@
       "score_fund": 3,
       "score_theme": 4.5,
       "total": 13.4,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 44.6,
         "ma10": 44.1,
@@ -4818,8 +4818,8 @@
       "score_fund": 4.5,
       "score_theme": 3.0,
       "total": 13.4,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 53.4,
         "ma10": 51.5,
@@ -4921,8 +4921,8 @@
       "score_fund": 3,
       "score_theme": 4.5,
       "total": 13.4,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 68.1,
         "ma10": 67.3,
@@ -5025,8 +5025,8 @@
       "score_fund": 2,
       "score_theme": 4.5,
       "total": 13.4,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 36.1,
         "ma10": 36.9,
@@ -5132,8 +5132,8 @@
       "score_fund": 5,
       "score_theme": 3.5,
       "total": 13.4,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 96.8,
         "ma10": 92.9,
@@ -5226,8 +5226,8 @@
       "score_fund": 4.5,
       "score_theme": 4.0,
       "total": 13.4,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 48.0,
         "ma10": 49.0,
@@ -5332,8 +5332,8 @@
       "score_fund": 5,
       "score_theme": 3.0,
       "total": 13.2,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 82.2,
         "ma10": 84.4,
@@ -5434,8 +5434,8 @@
       "score_fund": 3,
       "score_theme": 3.0,
       "total": 13.2,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 53.3,
         "ma10": 51.4,
@@ -5535,8 +5535,8 @@
       "score_fund": 4,
       "score_theme": 3.0,
       "total": 13.2,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 11.4,
         "ma10": 10.8,
@@ -5636,8 +5636,8 @@
       "score_fund": 5,
       "score_theme": 3.0,
       "total": 13.1,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 51.1,
         "ma10": 46.9,
@@ -5740,8 +5740,8 @@
       "score_fund": 4,
       "score_theme": 3.0,
       "total": 13.1,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 124.3,
         "ma10": 118.5,
@@ -5842,8 +5842,8 @@
       "score_fund": 4,
       "score_theme": 3.5,
       "total": 13.0,
-      "rating": "A",
-      "advice": "逢低加仓，重点关注",
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
       "tech": {
         "ma5": 49.3,
         "ma10": 49.2,
@@ -8582,6 +8582,110 @@
       "cagr3": 34.4
     },
     {
+      "name": "北京君正",
+      "code": "sz300223",
+      "sector": "AI/半导体",
+      "price": 259.56,
+      "pct_chg": 10.61,
+      "pe": 202.06,
+      "turnover": 14426910673.0,
+      "score_news": 4,
+      "score_tech": 1.1,
+      "score_fund": 2,
+      "score_theme": 4.5,
+      "total": 11.9,
+      "rating": "B",
+      "advice": "波段操作，轻仓参与",
+      "tech": {
+        "ma5": 248.8,
+        "ma10": 229.9,
+        "ma20": 193.6,
+        "ma60": 152.4,
+        "wma5": 192.8,
+        "wma10": 165.4,
+        "wma20": 141.7,
+        "trend": "双线多头",
+        "bull_level": 3,
+        "position": 100.0,
+        "vol_ratio": 1.14,
+        "amount_ratio": 1.43,
+        "amount_today_yi": 147.1,
+        "boll_upper": 276.4,
+        "boll_mid": 193.6,
+        "boll_lower": 110.8,
+        "boll_pos": 89.8,
+        "boll_label": "上轨附近",
+        "reason": "双线多头+极值高位(100%)+BOLL触碰上轨(超买); BOLL:上轨附近(90%)",
+        "overall": "震荡",
+        "explanations": [
+          "日线和周线均线均多头排列，中长趋势向上",
+          "接近BOLL上轨压力位，上涨空间有限",
+          "价格处于120日100%分位，接近区间高点"
+        ],
+        "support_levels": [
+          [
+            "MA20均线",
+            193.6
+          ],
+          [
+            "MA60均线",
+            152.44
+          ],
+          [
+            "BOLL下轨",
+            110.8
+          ]
+        ],
+        "resistance_levels": [
+          [
+            "120日高点",
+            259.56
+          ],
+          [
+            "BOLL上轨",
+            276.4
+          ]
+        ],
+        "vol_price_analysis": "量价基本平衡"
+      },
+      "fund_reasons": [
+        "高估值(FwdPE=105.9)+负增长(-1%)",
+        "估值阶梯明显收缩(105.9→83.6→72.0),3年收缩32%,高PE起始,阶梯加分受限"
+      ],
+      "theme_reasons": [
+        "细分题材:存储/处理器",
+        "板块涨跌-0.2%",
+        "板块2只涨停",
+        "题材处于震荡期",
+        "板块高度集中(77只上榜)",
+        "涨停确认主线强度"
+      ],
+      "news_reasons": [
+        "存储芯片+处理器+AIoT",
+        "⚠️存储行业周期+竞争加剧",
+        "涨停+10.6%(股价确认利好)"
+      ],
+      "news_items": [
+        {
+          "source": "券商研报",
+          "time": "",
+          "sentiment": "中性",
+          "content": "存储芯片+处理器+AIoT",
+          "url": ""
+        }
+      ],
+      "sub_theme": "存储/处理器",
+      "lifecycle": "震荡期",
+      "fwd_pe": 105.9,
+      "growth": -0.9,
+      "pe_ladder": {
+        "2026": 105.9,
+        "2027": 83.6,
+        "2028": 72.0
+      },
+      "cagr3": -25.5
+    },
+    {
       "name": "长电科技",
       "code": "sh600584",
       "sector": "AI/半导体",
@@ -8650,7 +8754,7 @@
       },
       "fund_reasons": [
         "高估值(FwdPE=80.3)+负增长(-12%)",
-        "估值阶梯明显收缩(80.3→65.1→54.2),3年收缩33%,高PE起始,阶梯加分受限"
+        "估值阶梯明显收缩(80.3→64.9→53.8),3年收缩33%,高PE起始,阶梯加分受限"
       ],
       "theme_reasons": [
         "细分题材:封测",
@@ -8679,8 +8783,8 @@
       "growth": -11.5,
       "pe_ladder": {
         "2026": 80.3,
-        "2027": 65.1,
-        "2028": 54.2
+        "2027": 64.9,
+        "2028": 53.8
       },
       "cagr3": -21.5
     },
@@ -11289,105 +11393,6 @@
       "cagr3": null
     },
     {
-      "name": "北京君正",
-      "code": "sz300223",
-      "sector": "AI/半导体",
-      "price": 259.56,
-      "pct_chg": 10.61,
-      "pe": 202.06,
-      "turnover": 14426910673.0,
-      "score_news": 4,
-      "score_tech": 1.1,
-      "score_fund": 1,
-      "score_theme": 4.5,
-      "total": 10.7,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
-      "tech": {
-        "ma5": 248.8,
-        "ma10": 229.9,
-        "ma20": 193.6,
-        "ma60": 152.4,
-        "wma5": 192.8,
-        "wma10": 165.4,
-        "wma20": 141.7,
-        "trend": "双线多头",
-        "bull_level": 3,
-        "position": 100.0,
-        "vol_ratio": 1.14,
-        "amount_ratio": 1.43,
-        "amount_today_yi": 147.1,
-        "boll_upper": 276.4,
-        "boll_mid": 193.6,
-        "boll_lower": 110.8,
-        "boll_pos": 89.8,
-        "boll_label": "上轨附近",
-        "reason": "双线多头+极值高位(100%)+BOLL触碰上轨(超买); BOLL:上轨附近(90%)",
-        "overall": "震荡",
-        "explanations": [
-          "日线和周线均线均多头排列，中长趋势向上",
-          "接近BOLL上轨压力位，上涨空间有限",
-          "价格处于120日100%分位，接近区间高点"
-        ],
-        "support_levels": [
-          [
-            "MA20均线",
-            193.6
-          ],
-          [
-            "MA60均线",
-            152.44
-          ],
-          [
-            "BOLL下轨",
-            110.8
-          ]
-        ],
-        "resistance_levels": [
-          [
-            "120日高点",
-            259.56
-          ],
-          [
-            "BOLL上轨",
-            276.4
-          ]
-        ],
-        "vol_price_analysis": "量价基本平衡"
-      },
-      "fund_reasons": [
-        "高估值(FwdPE=202.1)+负增长(-1%)"
-      ],
-      "theme_reasons": [
-        "细分题材:存储/处理器",
-        "板块涨跌-0.2%",
-        "板块2只涨停",
-        "题材处于震荡期",
-        "板块高度集中(77只上榜)",
-        "涨停确认主线强度"
-      ],
-      "news_reasons": [
-        "存储芯片+处理器+AIoT",
-        "⚠️存储行业周期+竞争加剧",
-        "涨停+10.6%(股价确认利好)"
-      ],
-      "news_items": [
-        {
-          "source": "券商研报",
-          "time": "",
-          "sentiment": "中性",
-          "content": "存储芯片+处理器+AIoT",
-          "url": ""
-        }
-      ],
-      "sub_theme": "存储/处理器",
-      "lifecycle": "震荡期",
-      "fwd_pe": 202.1,
-      "growth": -0.9,
-      "pe_ladder": null,
-      "cagr3": -25.5
-    },
-    {
       "name": "绿的谐波",
       "code": "sh688017",
       "sector": "高端制造",
@@ -13012,7 +13017,7 @@
       "sector": "电子制造",
       "price": 71.97,
       "pct_chg": 8.77,
-      "pe": 62.3,
+      "pe": 62.33,
       "turnover": 3969611204.0,
       "score_news": 1,
       "score_tech": 1.0,
@@ -13116,8 +13121,8 @@
       "score_fund": 2,
       "score_theme": 3.0,
       "total": 9.9,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 46.7,
         "ma10": 45.8,
@@ -13217,8 +13222,8 @@
       "score_fund": 1,
       "score_theme": 4.5,
       "total": 9.9,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 60.2,
         "ma10": 58.3,
@@ -13320,8 +13325,8 @@
       "score_fund": 2,
       "score_theme": 3.5,
       "total": 9.8,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 41.8,
         "ma10": 41.7,
@@ -13416,8 +13421,8 @@
       "score_fund": 1,
       "score_theme": 4.5,
       "total": 9.8,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 446.9,
         "ma10": 429.6,
@@ -13519,8 +13524,8 @@
       "score_fund": 2,
       "score_theme": 3.5,
       "total": 9.8,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 20.5,
         "ma10": 19.1,
@@ -13613,8 +13618,8 @@
       "score_fund": 2,
       "score_theme": 3.5,
       "total": 9.8,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 207.9,
         "ma10": 175.1,
@@ -13707,8 +13712,8 @@
       "score_fund": 2,
       "score_theme": 3.0,
       "total": 9.7,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 147.4,
         "ma10": 149.3,
@@ -13810,8 +13815,8 @@
       "score_fund": 2.5,
       "score_theme": 3.5,
       "total": 9.7,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 82.7,
         "ma10": 74.3,
@@ -13906,8 +13911,8 @@
       "score_fund": 1.5,
       "score_theme": 3.0,
       "total": 9.7,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 94.3,
         "ma10": 85.2,
@@ -14009,8 +14014,8 @@
       "score_fund": 1,
       "score_theme": 3.0,
       "total": 9.6,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 83.3,
         "ma10": 78.4,
@@ -14114,8 +14119,8 @@
       "score_fund": 2,
       "score_theme": 3.0,
       "total": 9.6,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 77.0,
         "ma10": 75.5,
@@ -14216,8 +14221,8 @@
       "score_fund": 2,
       "score_theme": 3.0,
       "total": 9.6,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 21.1,
         "ma10": 20.3,
@@ -14315,8 +14320,8 @@
       "score_fund": 2,
       "score_theme": 3.0,
       "total": 9.6,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 27.2,
         "ma10": 28.4,
@@ -14419,8 +14424,8 @@
       "score_fund": 3,
       "score_theme": 3.5,
       "total": 9.5,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 95.3,
         "ma10": 88.1,
@@ -14515,8 +14520,8 @@
       "score_fund": 3,
       "score_theme": 3.5,
       "total": 9.5,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 87.3,
         "ma10": 78.3,
@@ -14604,8 +14609,8 @@
       "score_fund": 1,
       "score_theme": 3.5,
       "total": 9.4,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 74.6,
         "ma10": 72.1,
@@ -14707,8 +14712,8 @@
       "score_fund": 3,
       "score_theme": 3.5,
       "total": 9.4,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 57.0,
         "ma10": 57.0,
@@ -14800,8 +14805,8 @@
       "score_fund": 2,
       "score_theme": 4.5,
       "total": 9.4,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 84.5,
         "ma10": 83.8,
@@ -14898,8 +14903,8 @@
       "score_fund": 2.5,
       "score_theme": 3.0,
       "total": 9.4,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 177.9,
         "ma10": 190.0,
@@ -14995,8 +15000,8 @@
       "score_fund": 1.5,
       "score_theme": 3.0,
       "total": 9.3,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 113.0,
         "ma10": 112.9,
@@ -15093,8 +15098,8 @@
       "score_fund": 1,
       "score_theme": 3.0,
       "total": 9.3,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 358.7,
         "ma10": 359.6,
@@ -15195,8 +15200,8 @@
       "score_fund": 3,
       "score_theme": 3.5,
       "total": 9.3,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 110.6,
         "ma10": 110.9,
@@ -15290,8 +15295,8 @@
       "score_fund": 0,
       "score_theme": 3.5,
       "total": 9.0,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 38.4,
         "ma10": 35.9,
@@ -15388,8 +15393,8 @@
       "score_fund": 1,
       "score_theme": 4.5,
       "total": 9.0,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 90.9,
         "ma10": 86.7,
@@ -15481,8 +15486,8 @@
       "score_fund": 2,
       "score_theme": 3.5,
       "total": 9.0,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 38.9,
         "ma10": 37.1,
@@ -15574,8 +15579,8 @@
       "score_fund": 2,
       "score_theme": 3.5,
       "total": 9.0,
-      "rating": "B",
-      "advice": "波段操作，轻仓参与",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 85.8,
         "ma10": 81.9,
@@ -19180,8 +19185,8 @@
       "score_fund": 0,
       "score_theme": 2.0,
       "total": 4.8,
-      "rating": "D",
-      "advice": "坚决回避，立即卖出",
+      "rating": "C",
+      "advice": "观望，不新开仓",
       "tech": {
         "ma5": 16.3,
         "ma10": 14.9,
@@ -19258,10 +19263,10 @@
   "stats": {
     "rating_dist": {
       "S": 4,
-      "A": 53,
-      "B": 97,
-      "C": 38,
-      "D": 1
+      "A": 29,
+      "B": 95,
+      "C": 65,
+      "D": 0
     },
     "sector_avg": {
       "新能源": {
