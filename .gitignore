@@ -1,0 +1,17 @@
+# 数据文件
+top200_all_a.json
+top200_scored_*.json
+top200_report_*.html
+scorer_log.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# 模板缓存（可重建）
+_template_head.html
+_template_foot.html
