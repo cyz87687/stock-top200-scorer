@@ -1,23 +1,23 @@
 <!DOCTYPE html>
+<!-- deploy refresh: 2026-07-06 v3 -->
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A股TOP200评分报告</title>
 <script>
-// 自动跳转到最新v2报告
-// 按日期倒序查找
+// 自动跳转到最新v3报告
 const reports = [
-  'top200_report_2026-07-06_v2.html',
+  'top200_report_2026-07-03_v3.html',
   'top200_report_2026-07-03_v2.html',
-  'top200_report_2026-07-02_v2.html'
+  'top200_report_2026-07-02_v2.html',
+  'top200_report_2026-06-26_v2.html'
 ];
 let target = reports[0];
 for (const r of reports) {
   if (document.cookie.includes(r)) { target = null; break; }
 }
 if (target) {
-  // 尝试加载，失败则显示列表
   fetch(target, { method: 'HEAD' }).then(resp => {
     if (resp.ok) window.location.href = target;
   }).catch(() => {});
@@ -32,6 +32,7 @@ p { color: #94a3b8; margin-bottom: 2rem; }
 .reports { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
 .reports a { display: block; padding: 1rem 2rem; background: #1e293b; border: 1px solid #334155; border-radius: 8px; text-decoration: none; color: #38bdf8; font-size: 1rem; transition: all 0.2s; }
 .reports a:hover { background: #334155; border-color: #38bdf8; transform: translateY(-1px); }
+.reports a.v3 { border-color: #818cf8; background: linear-gradient(135deg, #1e293b, #1e1b4b); }
 .meta { margin-top: 2rem; font-size: 0.85rem; color: #64748b; }
 </style>
 </head>
@@ -40,8 +41,9 @@ p { color: #94a3b8; margin-bottom: 2rem; }
   <h1>A股TOP200 评分报告</h1>
   <p>基于成交额TOP200的四维评分系统（题材热度 + 基本面 + 消息面 + 技术面）</p>
   <ul class="reports" id="reportList">
-    <li><a href="top200_report_2026-07-06_v2.html">2026-07-06（周一）</a></li>
-    <li><a href="top200_report_2026-07-03_v2.html">2026-07-03（周四）</a></li>
+    <li><a href="top200_report_2026-07-03_v3.html" class="v3">2026-07-03（周四）v3 完整版</a></li>
+    <li><a href="top200_report_2026-07-06_v2.html">2026-07-06（周一）v2</a></li>
+    <li><a href="top200_report_2026-07-03_v2.html">2026-07-03（周四）v2</a></li>
     <li><a href="top200_report_2026-07-02_v2.html">2026-07-02（周三）</a></li>
   </ul>
   <p class="meta">每日15:30自动更新 | 数据来源：新浪财经 / 腾讯行情 / akshare</p>
