@@ -22,7 +22,7 @@ fi
 # Step 2: 评分计算（含并发加速）
 echo ""
 echo ">>> Step 2: 评分计算"
-python3 run_step2_fast.py || { echo "❌ 评分计算失败"; exit 1; }
+python3 step2_stockscorer_v2.py || { echo "❌ 评分计算失败"; exit 1; }
 echo "✅ 评分计算完成"
 
 # Step 3: 生成v2 HTML报告

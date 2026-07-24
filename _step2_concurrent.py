@@ -1318,17 +1318,54 @@ def fetch_sector_data():
         return {}
 
 
+def _clamp(v, lo, hi):
+    return max(lo, min(hi, v))
+
+
+def _stock_momentum(kl):
+    """从日K线计算个股近5/10/20日收益率(%)。返回 {5,10,20} 或 None。"""
+    if not kl or len(kl) < 6:
+        return None
+    closes = [k["close"] for k in kl]
+    def _ret(n):
+        if len(closes) <= n:
+            return None
+        base = closes[-1 - n]
+        if base <= 0:
+            return None
+        return (closes[-1] - base) / base * 100.0
+    return {5: _ret(5), 10: _ret(10), 20: _ret(20)}
+
+
+def _agg_momentum(moms):
+    """对一组个股动量求中位数与上涨占比。moms: list of {5,10,20} 或 None。"""
+    out = {}
+    for w in (5, 10, 20):
+        vals = [m[w] for m in moms if m and m.get(w) is not None]
+        if vals:
+            s = sorted(vals)
+            mid = s[len(s) // 2] if len(s) % 2 else (s[len(s) // 2 - 1] + s[len(s) // 2]) / 2.0
+            up = sum(1 for v in vals if v > 0)
+            out[w] = {"median": mid, "up_ratio": up / len(vals), "n": len(vals)}
+    return out
+
+
 def score_theme(name, sector, pct, turnover, all_top200_sectors,
-                sector_data=None, sector_zt_counts=None):
+                sector_data=None, sector_zt_counts=None,
+                mom_map=None, theme_mom=None, sub_mom=None, code=None):
     """
-    题材热度评分 (0-5): 基础分 + 板块涨幅 + 涨停验证 + 资金流入 + 生命周期
-    去掉龙头加分，改为基于板块真实行情数据评分
+    题材热度评分 (0-5): 以内禀质量(THEME_DB/SUB_THEME)为先验，以成分股近
+    5/10/20日真实动量(中位数+上涨占比)为主导信号。
+
+    修复说明(v2.7):
+      旧版直接将 THEME_DB/SUB_THEME 硬编码分(如光模块/存储芯片=5)作为基础分，
+      而一切动态修正(板块涨跌幅/资金流/生命周期)都依赖新浪板块接口 sector_data，
+      一旦该接口映射失败或返回为空，整段动态逻辑被跳过，导致"近期持续下跌"的
+      题材仍得满分。新版改为用已抓取的日K线直接计算题材成分股真实动量，动量
+      作为主导信号、内禀质量仅作先验，下跌题材显著降分，且不再依赖外部板块接口。
     """
     theme = THEME_DB.get(sector, THEME_DB["综合"])
-    base_score = theme["score"]
-    reasons = [theme["reason"]]
-
-    # 细分题材覆盖（优先使用细分题材评分）
+    intrinsic = theme["score"]  # 内禀质量: 题材本身吸引力先验(1-5)
     sub_label = None
     sub_match = SUB_THEME.get(name)
     if not sub_match:
@@ -1348,88 +1385,122 @@ def score_theme(name, sector, pct, turnover, all_top200_sectors,
                         break
     if sub_match:
         sub_label, sub_score = sub_match
-        base_score = sub_score
-        reasons = [f"细分题材:{sub_label}"]
+        intrinsic = sub_score
+        reasons = [f"细分题材:{sub_label}(内禀{intrinsic})"]
     else:
         sub_label = theme["label"]
-        reasons = [f"板块:{sub_label}"]
+        reasons = [f"板块:{sub_label}(内禀{intrinsic})"]
 
-    # ===== 1. 板块近期涨跌幅 (0-1分) =====
+    # ===== 真实动量信号(主导): 成分股近20/10/5日中位数收益 =====
+    # 优先细分题材聚合, 其次板块聚合; 均来自TOP200内成分股, 不依赖外部接口
+    agg = None
+    if sub_label and sub_mom and sub_label in sub_mom:
+        agg = sub_mom[sub_label]
+    if (not agg or agg.get(20, {}).get("n", 0) < 2) and theme_mom and sector in theme_mom:
+        agg = theme_mom[sector]
+    mom20 = agg.get(20, {}).get("median") if agg else None
+    mom10 = agg.get(10, {}).get("median") if agg else None
+    mom5 = agg.get(5, {}).get("median") if agg else None
+    up_ratio20 = agg.get(20, {}).get("up_ratio") if agg else None
+    n_cons = agg.get(20, {}).get("n", 0) if agg else 0
+
+    def _mom_delta(r):
+        if r is None:
+            return 0.0
+        if r >= 8:    return 1.5    # 强势主线
+        if r >= 3:    return 0.75
+        if r > -3:    return -0.25  # 横盘: 轻微拖累(不再默认满分)
+        if r > -8:    return -1.0
+        return -1.75               # 明显退潮
+
+    delta = _mom_delta(mom20)
+    if mom20 is not None and mom10 is not None:
+        if mom10 - mom20 >= 5:
+            delta += 0.25
+            reasons.append("短期(10日)加速强于中期(20日)")
+        elif mom10 - mom20 <= -5:
+            delta -= 0.25
+            reasons.append("短期(10日)弱于中期(20日),动能衰减")
+    if mom20 is not None and up_ratio20 is not None:
+        reasons.append(f"题材近20日中位{mom20:+.1f}%,上涨占比{up_ratio20:.0%}({n_cons}只样本)")
+    else:
+        reasons.append("题材成分股动量样本不足,以内禀分为主")
+
+    # ===== 个股自身近20日动量(与题材背离时修正) =====
+    sm = mom_map.get(code) if (mom_map and code) else None
+    if sm and sm.get(20) is not None:
+        s20 = sm[20]
+        if s20 - (mom20 or 0) >= 8:
+            delta += 0.25
+            reasons.append(f"个股近20日{s20:+.1f}%强于题材,超额明显")
+        elif s20 - (mom20 or 0) <= -8:
+            delta -= 0.25
+            reasons.append(f"个股近20日{s20:+.1f}%弱于题材")
+
+    # ===== 今日单日确认 =====
+    if pct >= 9.9:
+        delta += 0.5
+        reasons.append("涨停确认强度")
+    elif pct >= 5:
+        delta += 0.25
+        reasons.append(f"大涨{pct:+.1f}%验证")
+    elif pct <= -7:
+        delta -= 0.5
+        reasons.append(f"大跌{pct:.1f}%,短期降温")
+    elif pct <= -3:
+        delta -= 0.25
+        reasons.append(f"下跌{pct:.1f}%")
+
+    # ===== 新浪板块接口(补充信号, 非门控) =====
     sector_pct = None
     if sector_data:
         sina_name = SECTOR_SINA_MAP.get(sector, "")
         sd = sector_data.get(sina_name) if sina_name else None
         if sd:
             sector_pct = sd["pct"]
-            if sector_pct >= 3:
-                base_score = min(5, base_score + 1)
-                reasons.append(f"板块大涨{sector_pct:+.1f}%")
-            elif sector_pct >= 1.5:
-                base_score = min(5, base_score + 0.5)
-                reasons.append(f"板块上涨{sector_pct:+.1f}%")
-            elif sector_pct <= -2:
-                base_score = max(0, base_score - 0.5)
-                reasons.append(f"板块下跌{sector_pct:.1f}%")
-            else:
-                reasons.append(f"板块涨跌{sector_pct:+.1f}%")
+            if sector_pct <= -2:
+                delta -= 0.25
+                reasons.append(f"板块当日下跌{sector_pct:.1f}%(新浪)")
+            elif sector_pct >= 3:
+                delta += 0.25
+                reasons.append(f"板块当日大涨{sector_pct:+.1f}%(新浪)")
 
-    # ===== 2. 板块内涨停家数/上涨家数 (0-0.5分) =====
-    zt_count = 0
-    up_count = 0
-    sector_total = 0
+    # ===== 涨停验证(今日情绪, 非门控) =====
+    zt_count = up_count = sector_total = 0
     if sector_zt_counts:
         zt_count = sector_zt_counts.get(sector, {}).get("zt", 0)
         up_count = sector_zt_counts.get(sector, {}).get("up", 0)
         sector_total = sector_zt_counts.get(sector, {}).get("total", 0)
     if sector_total > 0:
-        up_ratio = up_count / sector_total
+        upr = up_count / sector_total
         if zt_count >= 3:
-            base_score = min(5, base_score + 0.5)
+            delta += 0.3
             reasons.append(f"板块{zt_count}只涨停,做多情绪强")
         elif zt_count >= 1:
-            base_score = min(5, base_score + 0.3)
+            delta += 0.15
             reasons.append(f"板块{zt_count}只涨停")
-        if up_ratio >= 0.7:
-            reasons.append(f"上涨占比{up_ratio:.0%},普涨格局")
-        elif up_ratio <= 0.3:
-            reasons.append(f"上涨占比仅{up_ratio:.0%},多数下跌")
+        if upr >= 0.7:
+            reasons.append(f"上涨占比{upr:.0%},普涨")
+        elif upr <= 0.3:
+            reasons.append(f"上涨占比仅{upr:.0%},多数下跌")
 
-    # ===== 3. 板块资金净流入 (0-0.5分) =====
-    # 基于板块成交额变化推断（新浪接口无直接资金流向，用成交额+涨跌幅推断）
-    if sector_data and sector_pct is not None:
-        sina_name = SECTOR_SINA_MAP.get(sector, "")
-        sd = sector_data.get(sina_name) if sina_name else None
-        if sd and sd["amount"] > 0:
-            # 成交额放大+上涨 = 资金流入信号
-            amt_yi = sd["amount"] / 1e8
-            if sector_pct > 1 and amt_yi > 500:
-                base_score = min(5, base_score + 0.5)
-                reasons.append(f"板块放量上涨(成交{amt_yi:.0f}亿),资金流入")
-            elif sector_pct > 0.5 and amt_yi > 200:
-                base_score = min(5, base_score + 0.2)
-                reasons.append(f"板块温和放量(成交{amt_yi:.0f}亿)")
-
-    # ===== 4. 题材生命周期判断 =====
+    # ===== 生命周期(基于真实动量) =====
     lifecycle = "震荡期"
-    if sector_pct is not None and sector_total > 0:
-        up_ratio = up_count / sector_total if sector_total > 0 else 0
-        if sector_pct >= 3 and zt_count >= 3 and up_ratio >= 0.7:
+    if mom20 is not None:
+        if mom20 >= 8 and pct >= 0:
             lifecycle = "高潮期"
-            reasons.append(f"⚠️题材处于高潮期,注意追高风险")
-        elif sector_pct >= 1.5 and zt_count >= 1 and up_ratio >= 0.5:
+            reasons.append("⚠️题材高潮期,注意追高")
+        elif mom20 >= 3:
             lifecycle = "加速期"
-            reasons.append(f"题材处于加速期,趋势延续中")
-        elif sector_pct >= 0 and zt_count >= 1:
+            reasons.append("题材加速期,趋势延续")
+        elif mom20 > -3 and pct >= 0:
             lifecycle = "启动期"
-            reasons.append(f"题材处于启动期,可关注")
-        elif sector_pct < -1:
+            reasons.append("题材启动期,可关注")
+        elif mom20 <= -3:
             lifecycle = "退潮期"
-            base_score = max(0, base_score - 0.5)
-            reasons.append(f"题材处于退潮期,短期回避")
-        else:
-            reasons.append(f"题材处于{lifecycle}")
+            reasons.append("题材退潮期,短期回避")
     else:
-        reasons.append(f"题材处于{lifecycle}(无板块数据)")
+        reasons.append(f"题材处于{lifecycle}(动量样本不足)")
 
     # 板块集中度：同板块在TOP200中的数量
     sector_count = all_top200_sectors.count(sector)
@@ -1440,16 +1511,8 @@ def score_theme(name, sector, pct, turnover, all_top200_sectors,
     elif sector_count >= 5:
         reasons.append(f"板块有一定关注度({sector_count}只上榜)")
 
-    # 今日个股涨幅加成
-    if pct >= 9.9:
-        reasons.append(f"涨停确认主线强度")
-    elif pct >= 5 and base_score >= 4:
-        reasons.append(f"大涨{pct:+.1f}%验证主线")
-    elif pct < -7 and base_score >= 4:
-        reasons.append(f"获利回吐{pct:.1f}%,短期降温")
-        base_score = max(3, base_score - 1)
-
-    return max(0, min(5, round(base_score * 2) / 2)), reasons, sub_label, lifecycle
+    score = _clamp(intrinsic + delta, 0, 5)
+    return round(score * 2) / 2, reasons, sub_label, lifecycle
 
 
 # ============================================================
@@ -2111,7 +2174,7 @@ def main():
     if removed:
         print(f"   🚫 剔除金融股 {removed}只")
     
-    print(f"📊 Stock-Scorer v2.6 | {len(stocks)}只标的")
+    print(f"📊 Stock-Scorer v2.7 | {len(stocks)}只标的")
     print(f"   权重: 题材热度30% 基本面30%(含行业前景) 消息20% 技术面20%")
     
     # --- Step 1: K-lines (serial with delay to avoid API throttling) ---
@@ -2347,6 +2410,43 @@ def main():
                 computed_fwd_pe[code] = round(mktcap / forecasts, 1)
     
     print(f"   ✅ 增速={len(growth_map)} FwdPE={len(computed_fwd_pe)} PE阶梯={len(pe_ladder)} PE-TTM={len(pe_map)} MktCap={len(mktcap_map)}")
+    # --- Step 4.8: 题材动量预计算（基于已抓取的日K线，不依赖外部板块接口） ---
+    print(f"\n🔥 Step 4.8: 题材动量预计算 (成分股真实近5/10/20日收益)")
+    mom_map = {}
+    for s in stocks:
+        mom_map[s["code"]] = _stock_momentum(klines.get(s["code"], []))
+    sub_members = {}
+    sector_members = {}
+    for s in stocks:
+        sec = get_sec(s["name"])
+        sector_members.setdefault(sec, []).append(mom_map.get(s["code"]))
+        lab = None
+        sm = SUB_THEME.get(s["name"])
+        if not sm:
+            nn = _normalize_name(s["name"])
+            for prefix in ("XD", "DR", "XR"):
+                if nn.startswith(prefix):
+                    nn = nn[len(prefix):]
+                    break
+            sm = SUB_THEME.get(nn)
+            if not sm:
+                base_n = nn.rstrip("UW").rstrip("-").rstrip("U").rstrip("-")
+                sm = SUB_THEME.get(base_n)
+                if not sm:
+                    for key in SUB_THEME:
+                        if base_n.startswith(key) or key.startswith(base_n):
+                            sm = SUB_THEME[key]
+                            break
+        if sm:
+            lab = sm[0]
+            sub_members.setdefault(lab, []).append(mom_map.get(s["code"]))
+    theme_mom = {sec: _agg_momentum(ms) for sec, ms in sector_members.items()}
+    sub_mom = {lab: _agg_momentum(ms) for lab, ms in sub_members.items()}
+    for lab in ("光模块", "光模块/CPO", "存储芯片", "内存接口", "AI芯片/CPU", "AI芯片/GPU", "半导体设备", "PCB", "覆铜板/PCB"):
+        if lab in sub_mom:
+            a = sub_mom[lab].get(20, {})
+            print(f"   题材[{lab}] 近20日中位{a.get('median', 0):+.1f}% 上涨占比{a.get('up_ratio', 0):.0%} ({a.get('n', 0)}只)")
+
     # --- Step 5: Score all ---
     print(f"\n🎯 Step 5: 四维评分(题材30%+基本面30%(含行业前景)+消息20%+技术面20%)")
     results = []
@@ -2387,7 +2487,8 @@ def main():
         # Theme Heat (题材热度替代原资金面)
         ths, thr, sub_theme_label, lifecycle = score_theme(
             name, sector, pct, turnover, all_top200_sectors,
-            sector_data=sector_data, sector_zt_counts=sector_zt_counts)
+            sector_data=sector_data, sector_zt_counts=sector_zt_counts,
+            mom_map=mom_map, theme_mom=theme_mom, sub_mom=sub_mom, code=code)
         
         # News (传入增速用于动态评估)
         ntext = news_map.get(code, "")
@@ -2462,7 +2563,7 @@ def main():
     
     out_data = {
         "date": raw.get("date", ""),
-        "model": "stock-scorer v2.5",
+        "model": "stock-scorer v2.7",
         "weights": "题材30% 基本面30%(含行业前景) 消息20% 技术面20%",
         "results": results,
         "stats": {
